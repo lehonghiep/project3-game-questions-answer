@@ -1,17 +1,15 @@
 package com.hust.project3.gamequestionsanswer.service.impl
 
-import com.elomath.pro.constant.EloConstants
-import com.elomath.pro.constant.MessageKey
-import com.elomath.pro.database.entity.Account
-import com.elomath.pro.database.entity.UserProfile
-import com.elomath.pro.database.repository.AccountRepository
-import com.elomath.pro.database.repository.UserProfileRepository
-import com.elomath.pro.dto.*
-import com.elomath.pro.exception.ServiceException
-import com.elomath.pro.service.AccountService
-import com.elomath.pro.util.JwtUtil
-import com.elomath.pro.util.PasswordEncoder
-import com.elomath.pro.util.Validator
+import com.hust.project3.gamequestionsanswer.constant.EloConstants
+import com.hust.project3.gamequestionsanswer.constant.MessageKey
+import com.hust.project3.gamequestionsanswer.database.entity.Account
+import com.hust.project3.gamequestionsanswer.database.entity.UserProfile
+import com.hust.project3.gamequestionsanswer.database.repository.AccountRepository
+import com.hust.project3.gamequestionsanswer.database.repository.UserProfileRepository
+import com.hust.project3.gamequestionsanswer.dto.*
+import com.hust.project3.gamequestionsanswer.exception.ServiceException
+import com.hust.project3.gamequestionsanswer.service.AccountService
+import com.hust.project3.gamequestionsanswer.util.JwtUtil
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional

@@ -1,10 +1,9 @@
-package com.elomath.pro.controller
+package com.hust.project3.gamequestionsanswer.controller
 
-import com.elomath.pro.constant.Key
-import com.elomath.pro.dto.ResponseDto
-import com.elomath.pro.dto.UpdateUserProfileInfoDto
-import com.elomath.pro.log.LogFactory
-import com.elomath.pro.service.UserProfileService
+import com.hust.project3.gamequestionsanswer.constant.Key
+import com.hust.project3.gamequestionsanswer.dto.ResponseDto
+import com.hust.project3.gamequestionsanswer.dto.UpdateUserProfileInfoDto
+import com.hust.project3.gamequestionsanswer.log.LogFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody

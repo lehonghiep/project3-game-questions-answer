@@ -1,7 +1,7 @@
 package com.hust.project3.gamequestionsanswer.service
 
-import com.elomath.pro.database.entity.Account
-import com.elomath.pro.dto.*
+import com.hust.project3.gamequestionsanswer.database.entity.Account
+import com.hust.project3.gamequestionsanswer.dto.*
 import java.util.*
 
 interface AccountService {
@@ -16,5 +16,5 @@ interface AccountService {
     fun findByPhoneNumber(phoneNumber: String): Account?
 
     fun online(accountOnlineDto: AccountOnlineDto): ResponseDto<*>
-    
+
 }

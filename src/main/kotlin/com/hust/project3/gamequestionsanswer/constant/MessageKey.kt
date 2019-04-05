@@ -1,4 +1,4 @@
-package com.elomath.pro.constant
+package com.hust.project3.gamequestionsanswer.constant
 
 enum class MessageKey(val key: String) {
     SUCCESS("success"),

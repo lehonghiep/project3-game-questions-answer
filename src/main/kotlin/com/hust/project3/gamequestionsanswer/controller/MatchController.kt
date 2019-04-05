@@ -1,9 +1,7 @@
-package com.elomath.pro.controller
+package com.hust.project3.gamequestionsanswer.controller
 
-import com.elomath.pro.constant.Key
-import com.elomath.pro.constant.SecurityConstant
-import com.elomath.pro.dto.AnswerDto
-import com.elomath.pro.service.MatchService
+import com.hust.project3.gamequestionsanswer.constant.Key
+import com.hust.project3.gamequestionsanswer.dto.AnswerDto
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.messaging.handler.annotation.Header
 import org.springframework.messaging.handler.annotation.MessageMapping
