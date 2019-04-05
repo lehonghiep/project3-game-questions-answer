@@ -1,4 +1,4 @@
-package com.elomath.pro.constant
+package com.hust.project3.gamequestionsanswer.constant
 
 object MatchConstant {
     const val NUMBER_OF_OPENING_QUESTIONS = 10

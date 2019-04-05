@@ -1,4 +1,4 @@
-package com.elomath.pro.constant
+package com.hust.project3.gamequestionsanswer.constant
 
 enum class StatusCode(val value: Int) {
     NOT_FOUND(404),

@@ -1,4 +1,4 @@
-package com.elomath.pro.constant
+package com.hust.project3.gamequestionsanswer.constant
 
 object AnswerConstant {
     val ANSWER_ONE = "1"
