@@ -5,6 +5,7 @@ import com.elomath.pro.dto.ResponseDto
 import com.elomath.pro.dto.StatusDto
 import com.elomath.pro.exception.ServiceException
 import com.google.gson.Gson
+import org.hibernate.service.spi.ServiceException
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.security.core.AuthenticationException
