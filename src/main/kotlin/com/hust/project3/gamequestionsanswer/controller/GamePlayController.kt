@@ -1,9 +1,9 @@
 package com.hust.project3.gamequestionsanswer.controller
 
-import com.elomath.pro.constant.EloConstants
-import com.elomath.pro.constant.Key
-import com.elomath.pro.log.LogFactory
-import com.elomath.pro.service.GamePlayService
+import com.hust.project3.gamequestionsanswer.constant.EloConstants
+import com.hust.project3.gamequestionsanswer.constant.Key
+import com.hust.project3.gamequestionsanswer.log.LogFactory
+import com.hust.project3.gamequestionsanswer.service.GamePlayService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.messaging.handler.annotation.Header
 import org.springframework.messaging.handler.annotation.MessageMapping
@@ -43,11 +43,11 @@ class GamePlayController {
         gamePlayService.readyPlay(accountId, gameRoomId)
     }
 
-    @MessageMapping("/invite-player")
-    @Throws(Exception::class)
-    fun invitePlayer(@Header(value = Key.HEADER_ACCOUNT_ID) accountIdPlayerSendInvite: String,
-                     @Header(value = Key.HEADER_PHONE_NUMBER) phoneNumber: String) {
-        gamePlayService.invitePlayerByPhoneNumber(accountIdPlayerSendInvite, phoneNumber)
-    }
+//    @MessageMapping("/invite-player")
+//    @Throws(Exception::class)
+//    fun invitePlayer(@Header(value = Key.HEADER_ACCOUNT_ID) accountIdPlayerSendInvite: String,
+//                     @Header(value = Key.HEADER_PHONE_NUMBER) phoneNumber: String) {
+//        gamePlayService.invitePlayerByPhoneNumber(accountIdPlayerSendInvite, phoneNumber)
+//    }
 
 }

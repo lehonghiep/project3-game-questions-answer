@@ -1,12 +1,10 @@
 package com.hust.project3.gamequestionsanswer.security
 
-import com.elomath.pro.constant.MessageKey
-import com.elomath.pro.dto.ResponseDto
-import com.elomath.pro.dto.StatusDto
-import com.elomath.pro.exception.ServiceException
 import com.google.gson.Gson
+import com.hust.project3.gamequestionsanswer.constant.MessageKey
+import com.hust.project3.gamequestionsanswer.dto.ResponseDto
+import com.hust.project3.gamequestionsanswer.dto.StatusDto
 import org.hibernate.service.spi.ServiceException
-import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.security.core.AuthenticationException
 import org.springframework.security.web.AuthenticationEntryPoint

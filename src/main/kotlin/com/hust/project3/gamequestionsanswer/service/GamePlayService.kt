@@ -1,6 +1,6 @@
-package com.elomath.pro.service
+package com.hust.project3.gamequestionsanswer.service
 
-import com.elomath.pro.database.model.GameRoom
+import com.hust.project3.gamequestionsanswer.database.model.GameRoom
 import java.util.*
 
 interface GamePlayService {
@@ -18,5 +18,5 @@ interface GamePlayService {
 
     fun invitePlayerByPhoneNumber(accountIdPlayerSendInvite: String, phoneNumber: String)
 
-    fun handleRoomContainPlayer(accountId: String):Boolean
+    fun handleRoomContainPlayer(accountId: String): Boolean
 }

@@ -1,7 +1,5 @@
 package com.hust.project3.gamequestionsanswer.database.entity
 
-import com.elomath.pro.database.entity.AccountLevel
-import com.elomath.pro.database.entity.UserProfile
 import com.hust.project3.gamequestionsanswer.base.BaseEntity
 import javax.persistence.*
 

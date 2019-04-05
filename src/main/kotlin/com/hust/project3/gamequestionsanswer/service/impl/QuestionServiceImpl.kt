@@ -1,9 +1,9 @@
-package com.elomath.pro.service.impl
+package com.hust.project3.gamequestionsanswer.service.impl
 
-import com.elomath.pro.database.entity.Question
-import com.elomath.pro.database.repository.QuestionRepository
-import com.elomath.pro.dto.QuestionDto
-import com.elomath.pro.service.QuestionService
+import com.hust.project3.gamequestionsanswer.database.entity.Question
+import com.hust.project3.gamequestionsanswer.database.repository.QuestionRepository
+import com.hust.project3.gamequestionsanswer.dto.QuestionDto
+import com.hust.project3.gamequestionsanswer.service.QuestionService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional

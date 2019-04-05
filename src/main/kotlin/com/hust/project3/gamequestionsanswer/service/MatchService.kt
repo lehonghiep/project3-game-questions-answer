@@ -1,8 +1,7 @@
-package com.elomath.pro.service
+package com.hust.project3.gamequestionsanswer.service
 
-import com.elomath.pro.database.entity.Match
-import com.elomath.pro.dto.AnswerDto
-import com.elomath.pro.dto.PlayerInfoDto
+import com.hust.project3.gamequestionsanswer.database.entity.Match
+import com.hust.project3.gamequestionsanswer.dto.AnswerDto
 import java.util.*
 
 interface MatchService {
@@ -20,4 +19,5 @@ interface MatchService {
     fun saveMatch(match: Match)
 
     fun updateElo(playerOneId: UUID, playerTwoId: UUID, eloPlayerOne: Int, eloPlayerTwo: Int)
+
 }

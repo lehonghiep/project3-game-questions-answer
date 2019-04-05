@@ -1,14 +1,14 @@
-package com.elomath.pro.service.impl
+package com.hust.project3.gamequestionsanswer.service.impl
 
-import com.elomath.pro.constant.MessageKey
-import com.elomath.pro.database.model.GameRoom
-import com.elomath.pro.dto.PlayerInfoDto
-import com.elomath.pro.dto.ResponseDto
-import com.elomath.pro.dto.StatusDto
-import com.elomath.pro.service.AccountService
-import com.elomath.pro.service.GamePlayService
-import com.elomath.pro.service.MatchService
-import com.elomath.pro.service.UserProfileService
+import com.hust.project3.gamequestionsanswer.constant.MessageKey
+import com.hust.project3.gamequestionsanswer.database.model.GameRoom
+import com.hust.project3.gamequestionsanswer.dto.PlayerInfoDto
+import com.hust.project3.gamequestionsanswer.dto.ResponseDto
+import com.hust.project3.gamequestionsanswer.dto.StatusDto
+import com.hust.project3.gamequestionsanswer.service.AccountService
+import com.hust.project3.gamequestionsanswer.service.GamePlayService
+import com.hust.project3.gamequestionsanswer.service.MatchService
+import com.hust.project3.gamequestionsanswer.service.UserProfileService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.messaging.simp.SimpMessageSendingOperations

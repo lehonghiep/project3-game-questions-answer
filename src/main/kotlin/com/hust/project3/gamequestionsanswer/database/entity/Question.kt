@@ -1,5 +1,6 @@
 package com.hust.project3.gamequestionsanswer.database.entity
 
+import com.elomath.pro.util.AnswerConvertor
 import com.hust.project3.gamequestionsanswer.base.BaseEntity
 import javax.persistence.*
 

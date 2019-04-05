@@ -1,12 +1,13 @@
-package com.elomath.pro.service
+package com.hust.project3.gamequestionsanswer.service
 
-import com.elomath.pro.dto.ResponseDto
-import com.elomath.pro.dto.UpdateUserProfileInfoDto
-import com.elomath.pro.dto.UserProfileDto
+import com.hust.project3.gamequestionsanswer.dto.ResponseDto
+import com.hust.project3.gamequestionsanswer.dto.UpdateUserProfileInfoDto
+import com.hust.project3.gamequestionsanswer.dto.UserProfileDto
 
 interface UserProfileService {
     fun updateUserProfile(updateUserProfileInfoDto: UpdateUserProfileInfoDto,
                           accountId: String): ResponseDto<*>
 
     fun getUserProfileByAccountId(accountId: String): UserProfileDto
+
 }

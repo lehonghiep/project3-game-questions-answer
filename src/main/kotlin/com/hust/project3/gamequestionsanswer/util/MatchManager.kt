@@ -1,14 +1,14 @@
 package com.elomath.pro.util
 
-import com.elomath.pro.constant.MatchConstant
-import com.elomath.pro.constant.MessageKey
-import com.elomath.pro.database.entity.Match
-import com.elomath.pro.database.model.Player
-import com.elomath.pro.database.model.PlayerAnswer
-import com.elomath.pro.database.model.QuestionInMatch
-import com.elomath.pro.dto.*
-import com.elomath.pro.service.QuestionService
-import com.elomath.pro.service.impl.IActionMatchManager
+import com.hust.project3.gamequestionsanswer.constant.MatchConstant
+import com.hust.project3.gamequestionsanswer.constant.MessageKey
+import com.hust.project3.gamequestionsanswer.database.entity.Match
+import com.hust.project3.gamequestionsanswer.database.model.Player
+import com.hust.project3.gamequestionsanswer.database.model.PlayerAnswer
+import com.hust.project3.gamequestionsanswer.database.model.QuestionInMatch
+import com.hust.project3.gamequestionsanswer.dto.*
+import com.hust.project3.gamequestionsanswer.service.QuestionService
+import com.hust.project3.gamequestionsanswer.service.impl.IActionMatchManager
 import org.springframework.messaging.simp.SimpMessageSendingOperations
 import java.util.*
 

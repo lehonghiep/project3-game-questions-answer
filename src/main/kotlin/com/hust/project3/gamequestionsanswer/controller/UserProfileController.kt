@@ -4,6 +4,7 @@ import com.hust.project3.gamequestionsanswer.constant.Key
 import com.hust.project3.gamequestionsanswer.dto.ResponseDto
 import com.hust.project3.gamequestionsanswer.dto.UpdateUserProfileInfoDto
 import com.hust.project3.gamequestionsanswer.log.LogFactory
+import com.hust.project3.gamequestionsanswer.service.UserProfileService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody

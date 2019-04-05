@@ -1,7 +1,7 @@
 package com.elomath.pro.util
 
-import com.elomath.pro.constant.EloConstants
-import com.elomath.pro.constant.MatchConstant
+import com.hust.project3.gamequestionsanswer.constant.EloConstants
+import com.hust.project3.gamequestionsanswer.constant.MatchConstant
 
 object EloCalculatorUtil {
     fun scoreElo(preEloPlayerOne: Int, preEloPlayerTwo: Int, resultOfPlayerOne: String): MutableList<Int> {

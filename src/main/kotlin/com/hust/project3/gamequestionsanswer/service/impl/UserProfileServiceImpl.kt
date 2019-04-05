@@ -1,14 +1,14 @@
-package com.elomath.pro.service.impl
+package com.hust.project3.gamequestionsanswer.service.impl
 
-import com.elomath.pro.constant.MessageKey
-import com.elomath.pro.database.entity.UserProfile
-import com.elomath.pro.database.repository.AccountRepository
-import com.elomath.pro.database.repository.UserProfileRepository
-import com.elomath.pro.dto.ResponseDto
-import com.elomath.pro.dto.StatusDto
-import com.elomath.pro.dto.UpdateUserProfileInfoDto
-import com.elomath.pro.dto.UserProfileDto
-import com.elomath.pro.service.UserProfileService
+import com.hust.project3.gamequestionsanswer.constant.MessageKey
+import com.hust.project3.gamequestionsanswer.database.entity.UserProfile
+import com.hust.project3.gamequestionsanswer.database.repository.AccountRepository
+import com.hust.project3.gamequestionsanswer.database.repository.UserProfileRepository
+import com.hust.project3.gamequestionsanswer.dto.ResponseDto
+import com.hust.project3.gamequestionsanswer.dto.StatusDto
+import com.hust.project3.gamequestionsanswer.dto.UpdateUserProfileInfoDto
+import com.hust.project3.gamequestionsanswer.dto.UserProfileDto
+import com.hust.project3.gamequestionsanswer.service.UserProfileService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
