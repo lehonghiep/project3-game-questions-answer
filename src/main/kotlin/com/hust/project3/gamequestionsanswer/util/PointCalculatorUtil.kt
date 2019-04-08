@@ -1,6 +1,6 @@
-package com.elomath.pro.util
+package com.hust.project3.gamequestionsanswer.util
 
-import com.hust.project3.gamequestionsanswer.constant.EloConstants
+import com.hust.project3.gamequestionsanswer.constant.PointConstants
 import com.hust.project3.gamequestionsanswer.constant.MatchConstant
 
 object EloCalculatorUtil {
@@ -40,16 +40,16 @@ object EloCalculatorUtil {
         var constantsK = 0
         when {
             eloOfPlayer < 1600 -> {
-                constantsK = EloConstants.CONSTANTS_K_OF_PLAYER_BELOW_1600_ELO
+                constantsK = PointConstants.CONSTANTS_K_OF_PLAYER_BELOW_1600_POINT
             }
             eloOfPlayer < 2000 -> {
-                constantsK = EloConstants.CONSTANTS_K_OF_PLAYER_BELOW_2000_ELO
+                constantsK = PointConstants.CONSTANTS_K_OF_PLAYER_BELOW_2000_POINT
             }
             eloOfPlayer < 2400 -> {
-                constantsK = EloConstants.CONSTANTS_K_OF_PLAYER_BELOW_2400_ELO
+                constantsK = PointConstants.CONSTANTS_K_OF_PLAYER_BELOW_2400_POINT
             }
             eloOfPlayer >= 2400 -> {
-                constantsK = EloConstants.CONSTANTS_K_OF_PLAYER_ABOVE_2400_ELO
+                constantsK = PointConstants.CONSTANTS_K_OF_PLAYER_ABOVE_2400_POINT
             }
         }
         return constantsK
