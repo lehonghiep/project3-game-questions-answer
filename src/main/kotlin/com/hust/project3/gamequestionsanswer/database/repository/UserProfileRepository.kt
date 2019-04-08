@@ -13,8 +13,8 @@ import java.util.*
 interface UserProfileRepository : PagingAndSortingRepository<UserProfile, UUID> {
     @Modifying
     @Query("UPDATE user_profile up " +
-            "SET elo = ?1 " +
+            "SET point = ?1 " +
             "FROM account a " +
             "WHERE up.id = a.user_profile_id AND a.id = ?2 ", nativeQuery = true)
-    fun updateEloByAccountId(elo: Int, accountId: UUID)
+    fun updatePointByAccountId(point: Int, accountId: UUID)
 }

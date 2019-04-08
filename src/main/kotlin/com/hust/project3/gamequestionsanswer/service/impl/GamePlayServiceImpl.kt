@@ -65,19 +65,19 @@ class GamePlayServiceImpl : GamePlayService {
         }
     }
 
-    override fun matchPlayerByElo(accountId: String, rangeOfElo: Int) {
+    override fun matchPlayerByPoint(accountId: String, rangeOfPoint: Int) {
         val userProfile = userProfileService.getUserProfileByAccountId(accountId)
-        val elo = userProfile.elo!!
+        val point = userProfile.point!!
         val roomAvailableFilter = this.listRoom.filter { it.value.status }
-        val roomFilterByElo = roomAvailableFilter.filter {
-            Math.abs((it.value.listPlayerInfo[0].userProfileDto.elo!!) - elo) <= rangeOfElo
+        val roomFilterByPoint = roomAvailableFilter.filter {
+            Math.abs((it.value.listPlayerInfo[0].userProfileDto.point!!) - point) <= rangeOfPoint
         }
-        if (roomFilterByElo.isEmpty()) {
+        if (roomFilterByPoint.isEmpty()) {
             createNewRoom(accountId)
         } else {
             synchronized(this.listRoom) {
-                val gameRoomId = roomFilterByElo.keys.elementAt(0)
-                val gameRoom = roomFilterByElo.getValue(gameRoomId)
+                val gameRoomId = roomFilterByPoint.keys.elementAt(0)
+                val gameRoom = roomFilterByPoint.getValue(gameRoomId)
                 val playerInfoDto = PlayerInfoDto(accountId, false, userProfile)
                 gameRoom.listPlayerInfo.add(playerInfoDto)
                 gameRoom.status = false
@@ -181,8 +181,8 @@ class GamePlayServiceImpl : GamePlayService {
 
                         matchService.createMatch(gameRoomId, UUID.fromString(playerOne.accountId),
                                 UUID.fromString(playerTwo.accountId),
-                                playerOne.userProfileDto.elo!!,
-                                playerTwo.userProfileDto.elo!!)
+                                playerOne.userProfileDto.point!!,
+                                playerTwo.userProfileDto.point!!)
                     }
                 }
             }
@@ -191,25 +191,6 @@ class GamePlayServiceImpl : GamePlayService {
 
     override fun getListRoom(): HashMap<UUID, GameRoom> {
         return this.listRoom
-    }
-
-    override fun invitePlayerByPhoneNumber(accountIdPlayerSendInvite: String, phoneNumber: String) {
-        val accountIdPlayerInvited = accountService.findByPhoneNumber(phoneNumber)!!.id.toString()
-        val roomContainPlayerInvited = getRoomContainPlayerById(accountIdPlayerInvited)
-        if (roomContainPlayerInvited == null) {
-            createNewRoom(accountIdPlayerSendInvite)
-            val gameRoom = getRoomContainPlayerById(accountIdPlayerSendInvite)
-            sendTo(accountIdPlayerInvited, ResponseDto(gameRoom, StatusDto(MessageKey.SUCCESS)))
-        } else {
-            val infoOfPlayerInvited: PlayerInfoDto = roomContainPlayerInvited.listPlayerInfo.find { it.accountId == accountIdPlayerInvited }!!
-            if (infoOfPlayerInvited.isReadyPlay) {
-                sendTo(accountIdPlayerSendInvite, ResponseDto("Playing", StatusDto(MessageKey.SUCCESS)))
-            } else {
-                createNewRoom(accountIdPlayerSendInvite)
-                val gameRoom = getRoomContainPlayerById(accountIdPlayerSendInvite)
-                sendTo(accountIdPlayerInvited, ResponseDto(gameRoom, StatusDto(MessageKey.SUCCESS)))
-            }
-        }
     }
 
 }

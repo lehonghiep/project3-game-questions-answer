@@ -7,8 +7,8 @@ import java.util.*
 interface MatchService {
     fun createMatch(roomId: UUID, playerOneId: UUID,
                     playerTwoId: UUID,
-                    eloPlayerOne: Int,
-                    eloPlayerTwo: Int)
+                    pointPlayerOne: Int,
+                    pointPlayerTwo: Int)
 
     fun removeMatch(roomId: UUID)
 
@@ -18,6 +18,6 @@ interface MatchService {
 
     fun saveMatch(match: Match)
 
-    fun updateElo(playerOneId: UUID, playerTwoId: UUID, eloPlayerOne: Int, eloPlayerTwo: Int)
+    fun updatePoint(playerOneId: UUID, playerTwoId: UUID, pointPlayerOne: Int, pointPlayerTwo: Int)
 
 }

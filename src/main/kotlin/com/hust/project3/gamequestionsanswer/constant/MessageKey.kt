@@ -6,7 +6,7 @@ enum class MessageKey(val key: String) {
     REGISTER_ACCOUNT_EXISTED("failure_register_account_existed"),
     LOGIN_ACCOUNT_EXISTED("failure_login_account_existed"),
     LOGIN_ACCOUNT_NOT_EXISTED("failure_login_account_notExisted"),
-    LOGIN_PHONENUMBER_WRONG("failure_login_phoneNumber_invalid"),
+    LOGIN_USERNAME_WRONG("failure_login_username_invalid"),
     PASSWORD_INVALID("failure_login_password_invalid"),
     REQUEST_TOKEN_INVALID_OR_NOT_AVAILABLE("failure_token_invalidOrNotAvailable"),
     REQUEST_TOKEN_EXPIRED("failure_token_expired"),

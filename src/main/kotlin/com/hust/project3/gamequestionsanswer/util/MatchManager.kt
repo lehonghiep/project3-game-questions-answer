@@ -1,4 +1,4 @@
-package com.elomath.pro.util
+package com.hust.project3.gamequestionsanswer.util
 
 import com.hust.project3.gamequestionsanswer.constant.MatchConstant
 import com.hust.project3.gamequestionsanswer.constant.MessageKey
@@ -18,7 +18,7 @@ class MatchManager(var simpMessageSendingOperations: SimpMessageSendingOperation
                    var simpleBrokerPrefix: String,
                    var iActionMatchManager: IActionMatchManager,
                    var roomId: UUID, var playerOneId: UUID, var playerTwoId: UUID,
-                   var eloPlayerOne: Int, var eloPlayerTwo: Int) {
+                   var pointPlayerOne: Int, var pointPlayerTwo: Int) {
 
     var listPlayer: MutableMap<UUID, Player> = mutableMapOf()
 
@@ -170,24 +170,24 @@ class MatchManager(var simpMessageSendingOperations: SimpMessageSendingOperation
 
     private fun cancelMatch(playerOne: Player, playerTwo: Player, winner: UUID?) {
         countDownTimer.cancel()
-        var listElo: MutableList<Int>? = null
+        var listpoint: MutableList<Int>? = null
         when {
             winner == null -> {
-                listElo = EloCalculatorUtil.scoreElo(eloPlayerOne, eloPlayerTwo, MatchConstant.PLAYER_DRAW)
+                listpoint = PointCalculatorUtil.calculate(pointPlayerOne, pointPlayerTwo, MatchConstant.PLAYER_DRAW)
             }
             winner == playerOneId -> {
-                listElo = EloCalculatorUtil.scoreElo(eloPlayerOne, eloPlayerTwo, MatchConstant.PLAYER_WIN)
+                listpoint = PointCalculatorUtil.calculate(pointPlayerOne, pointPlayerTwo, MatchConstant.PLAYER_WIN)
             }
             else -> {
-                listElo = EloCalculatorUtil.scoreElo(eloPlayerOne, eloPlayerTwo, MatchConstant.PLAYER_LOSE)
+                listpoint = PointCalculatorUtil.calculate(pointPlayerOne, pointPlayerTwo, MatchConstant.PLAYER_LOSE)
             }
         }
         val listResultPlayerDto: MutableList<ResultPlayerDto> = mutableListOf()
 
-        listResultPlayerDto.add(ResultPlayerDto(playerOneId, playerOne!!.score, listElo[0]))
-        listResultPlayerDto.add(ResultPlayerDto(playerTwoId, playerTwo!!.score, listElo[1]))
+        listResultPlayerDto.add(ResultPlayerDto(playerOneId, playerOne!!.score, listpoint[0]))
+        listResultPlayerDto.add(ResultPlayerDto(playerTwoId, playerTwo!!.score, listpoint[1]))
 
-        saveMatchResult(playerOne, playerTwo, winner, listElo[0], listElo[1])
+        saveMatchResult(playerOne, playerTwo, winner, listpoint[0], listpoint[1])
         sendTo(roomId, ResponseDto(MatchResultDto(
                 listResultPlayerDto,
                 winner),
@@ -236,14 +236,14 @@ class MatchManager(var simpMessageSendingOperations: SimpMessageSendingOperation
             else -> matchResult = MatchConstant.PLAYER_DRAW
         }
 
-        val listElo = EloCalculatorUtil.scoreElo(eloPlayerOne, eloPlayerTwo, matchResult)
+        val listpoint = PointCalculatorUtil.calculate(pointPlayerOne, pointPlayerTwo, matchResult)
 
         val listResultPlayerDto: MutableList<ResultPlayerDto> = mutableListOf()
 
-        listResultPlayerDto.add(ResultPlayerDto(playerOneId, playerOne!!.score, listElo[0]))
-        listResultPlayerDto.add(ResultPlayerDto(playerTwoId, playerTwo!!.score, listElo[1]))
+        listResultPlayerDto.add(ResultPlayerDto(playerOneId, playerOne!!.score, listpoint[0]))
+        listResultPlayerDto.add(ResultPlayerDto(playerTwoId, playerTwo!!.score, listpoint[1]))
 
-        saveMatchResult(playerOne, playerTwo, winner, listElo[0], listElo[1])
+        saveMatchResult(playerOne, playerTwo, winner, listpoint[0], listpoint[1])
 
         sendTo(roomId, ResponseDto(MatchResultDto(
                 listResultPlayerDto,
@@ -353,14 +353,14 @@ class MatchManager(var simpMessageSendingOperations: SimpMessageSendingOperation
                 winner = playerOneId
             }
 
-            val listElo = EloCalculatorUtil.scoreElo(eloPlayerOne, eloPlayerTwo, matchResult)
+            val listpoint = PointCalculatorUtil.calculate(pointPlayerOne, pointPlayerTwo, matchResult)
 
             val listResultPlayerDto: MutableList<ResultPlayerDto> = mutableListOf()
 
-            listResultPlayerDto.add(ResultPlayerDto(playerOneId, playerOne!!.score, listElo[0]))
-            listResultPlayerDto.add(ResultPlayerDto(playerTwoId, playerTwo!!.score, listElo[1]))
+            listResultPlayerDto.add(ResultPlayerDto(playerOneId, playerOne!!.score, listpoint[0]))
+            listResultPlayerDto.add(ResultPlayerDto(playerTwoId, playerTwo!!.score, listpoint[1]))
 
-            saveMatchResult(playerOne, playerTwo, winner, listElo[0], listElo[1])
+            saveMatchResult(playerOne, playerTwo, winner, listpoint[0], listpoint[1])
 
             sendTo(roomId, ResponseDto(MatchResultDto(
                     listResultPlayerDto,
@@ -371,7 +371,7 @@ class MatchManager(var simpMessageSendingOperations: SimpMessageSendingOperation
     }
 
     private fun saveMatchResult(playerOne: Player, playerTwo: Player, winner: UUID?,
-                                eloPlayerOne: Int, eloPlayerTwo: Int) {
+                                pointPlayerOne: Int, pointPlayerTwo: Int) {
         var match: Match = Match()
 
         match.id = roomId
@@ -381,7 +381,7 @@ class MatchManager(var simpMessageSendingOperations: SimpMessageSendingOperation
         match.playerTwoScore = playerTwo.score
         match.winner = winner
 
-        iActionMatchManager.saveMatchResult(match, eloPlayerOne, eloPlayerTwo)
+        iActionMatchManager.saveMatchResult(match, pointPlayerOne, pointPlayerTwo)
         iActionMatchManager.removeMatchManager(roomId)
     }
 

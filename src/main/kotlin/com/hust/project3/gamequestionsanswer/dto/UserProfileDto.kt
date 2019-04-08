@@ -4,5 +4,5 @@ import java.util.*
 
 data class UserProfileDto(var fullName: String?,
                           var dateOfBirth: Date?,
-                          var elo: Int?,
+                          var point: Int?,
                           var avatar: String?)

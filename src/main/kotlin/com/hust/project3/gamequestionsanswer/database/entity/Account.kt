@@ -7,8 +7,8 @@ import javax.persistence.*
 @Entity
 @Table(name = "account")
 class Account : BaseEntity() {
-    @Column(name = "phone_number")
-    lateinit var phoneNumber: String
+    @Column(name = "username")
+    lateinit var username: String
 
     @Column(name = "password")
     lateinit var password: String

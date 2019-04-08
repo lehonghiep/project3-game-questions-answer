@@ -1,6 +1,6 @@
 package com.hust.project3.gamequestionsanswer.service.impl
 
-import com.elomath.pro.util.MatchManager
+import com.hust.project3.gamequestionsanswer.util.MatchManager
 import com.hust.project3.gamequestionsanswer.database.entity.Match
 import com.hust.project3.gamequestionsanswer.database.repository.MatchRepository
 import com.hust.project3.gamequestionsanswer.database.repository.UserProfileRepository
@@ -40,9 +40,9 @@ class MatchServiceImpl : MatchService {
     private var listMatchManager: MutableMap<UUID, MatchManager> = mutableMapOf()
 
     private var iActionMatchManager: IActionMatchManager = object : IActionMatchManager {
-        override fun saveMatchResult(match: Match, eloPlayerOne: Int, eloPlayerTwo: Int) {
+        override fun saveMatchResult(match: Match, pointPlayerOne: Int, pointPlayerTwo: Int) {
             saveMatch(match)
-            updateElo(match.playerOne, match.playerTwo, eloPlayerOne, eloPlayerTwo)
+            updatePoint(match.playerOne, match.playerTwo, pointPlayerOne, pointPlayerTwo)
         }
 
         override fun removeMatchManager(roomId: UUID) {
@@ -64,11 +64,11 @@ class MatchServiceImpl : MatchService {
     }
 
     override fun createMatch(roomId: UUID, playerOne: UUID, playerTwo: UUID,
-                             eloPlayerOne: Int, eloPlayerTwo: Int) {
+                             pointPlayerOne: Int, pointPlayerTwo: Int) {
         val matchManager = MatchManager(simpMessageSendingOperations,
                 questionService, simpleBrokerPrefix,
                 iActionMatchManager,
-                roomId, playerOne, playerTwo, eloPlayerOne, eloPlayerTwo)
+                roomId, playerOne, playerTwo, pointPlayerOne, pointPlayerTwo)
         if (listMatchManager.containsKey(roomId)) {
             return
         }
@@ -90,9 +90,9 @@ class MatchServiceImpl : MatchService {
         matchManager?.receiveAnswer(accountId, answerDto)
     }
 
-    override fun updateElo(playerOneId: UUID, playerTwoId: UUID, eloPlayerOne: Int, eloPlayerTwo: Int) {
-        userProfileRepository.updateEloByAccountId(eloPlayerOne, playerOneId)
-        userProfileRepository.updateEloByAccountId(eloPlayerTwo, playerTwoId)
+    override fun updatePoint(playerOneId: UUID, playerTwoId: UUID, pointPlayerOne: Int, pointPlayerTwo: Int) {
+        userProfileRepository.updatePointByAccountId(pointPlayerOne, playerOneId)
+        userProfileRepository.updatePointByAccountId(pointPlayerTwo, playerTwoId)
     }
 
     override fun playerGiveUp(roomId: UUID?, accountId: UUID) {
@@ -102,7 +102,7 @@ class MatchServiceImpl : MatchService {
 }
 
 interface IActionMatchManager {
-    fun saveMatchResult(match: Match, eloPlayerOne: Int, eloPlayerTwo: Int)
+    fun saveMatchResult(match: Match, pointPlayerOne: Int, pointPlayerTwo: Int)
 
     fun removeMatchManager(roomId: UUID)
 }

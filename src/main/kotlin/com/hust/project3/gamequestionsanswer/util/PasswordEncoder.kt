@@ -1,4 +1,4 @@
-package com.elomath.pro.util
+package com.hust.project3.gamequestionsanswer.util
 
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder

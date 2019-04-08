@@ -21,7 +21,7 @@ class UserProfileServiceImpl : UserProfileService {
         val profile = userProfileByAccountId(accountId)
         return UserProfileDto(profile.fullName,
                 profile.dateOfBirth,
-                profile.elo,
+                profile.point,
                 profile.avatar)
 
     }

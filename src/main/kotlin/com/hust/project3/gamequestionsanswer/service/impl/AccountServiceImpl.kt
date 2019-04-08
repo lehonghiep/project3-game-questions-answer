@@ -1,8 +1,8 @@
 package com.hust.project3.gamequestionsanswer.service.impl
 
-import com.elomath.pro.util.PasswordEncoder
-import com.elomath.pro.util.Validator
-import com.hust.project3.gamequestionsanswer.constant.EloConstants
+import com.hust.project3.gamequestionsanswer.util.PasswordEncoder
+import com.hust.project3.gamequestionsanswer.util.Validator
+import com.hust.project3.gamequestionsanswer.constant.PointConstants
 import com.hust.project3.gamequestionsanswer.constant.MessageKey
 import com.hust.project3.gamequestionsanswer.database.entity.Account
 import com.hust.project3.gamequestionsanswer.database.entity.UserProfile
@@ -30,12 +30,12 @@ class AccountServiceImpl : AccountService {
         return accountRepository.findById(id).get()
     }
 
-    override fun findByPhoneNumber(phoneNumber: String): Account? {
-        return accountRepository.findByPhoneNumber(phoneNumber)
+    override fun findByUsername(username: String): Account? {
+        return accountRepository.findByUsername(username)
     }
 
     override fun login(accountDto: AccountDto): ResponseDto<LoginResultDto> {
-        val username = accountDto.phoneNumber
+        val username = accountDto.username
         val password = accountDto.password
 
         validateUserPassword(username, password)
@@ -45,7 +45,7 @@ class AccountServiceImpl : AccountService {
             throw ServiceException(MessageKey.LOGIN_ACCOUNT_NOT_EXISTED)
         }
 
-        val account = accountRepository.findByPhoneNumber(username)
+        val account = accountRepository.findByUsername(username)
 
         if (!PasswordEncoder.validatePassword(password, account.password)) {
             throw ServiceException(MessageKey.PASSWORD_INVALID)
@@ -63,7 +63,7 @@ class AccountServiceImpl : AccountService {
         val profileDto = UserProfileDto(
                 profile.fullName,
                 profile.dateOfBirth,
-                profile.elo,
+                profile.point,
                 profile.avatar
         )
 
@@ -71,22 +71,22 @@ class AccountServiceImpl : AccountService {
     }
 
     override fun accountIsExisted(username: String): Boolean {
-        return accountRepository.existsAccountByPhoneNumber(username)
+        return accountRepository.existsAccountByUsername(username)
     }
 
     override fun register(registerInfoDto: RegisterInfoDto): ResponseDto<*> {
-        val phoneNumber = registerInfoDto.phoneNumber
+        val username = registerInfoDto.username
         val password = registerInfoDto.password
 
-        validateUserPassword(phoneNumber, password)
+        validateUserPassword(username, password)
 
-        //validate phoneNumber is Existed
-        val isExisted = accountIsExisted(phoneNumber)
+        //validate username is Existed
+        val isExisted = accountIsExisted(username)
         if (isExisted) {
             throw ServiceException(MessageKey.REGISTER_ACCOUNT_EXISTED)
         }
 
-        val account = createAccount(phoneNumber, password)
+        val account = createAccount(username, password)
         val profile = createProfile(registerInfoDto)
 
         account.userProfile = profile
@@ -97,7 +97,7 @@ class AccountServiceImpl : AccountService {
 
     private fun createAccount(username: String, password: String): Account {
         val account = Account()
-        account.phoneNumber = username
+        account.username = username
         account.password = PasswordEncoder.encryptPassword(password)
         account.online = false
         return account
@@ -106,13 +106,13 @@ class AccountServiceImpl : AccountService {
     private fun createProfile(registerInfoDto: RegisterInfoDto): UserProfile {
         val userProfile = UserProfile()
         userProfile.fullName = registerInfoDto.fullName
-        userProfile.elo = EloConstants.DEFAULT_ELO
+        userProfile.point = PointConstants.DEFAULT_POINT
         return userProfile
     }
 
-    private fun validateUserPassword(phoneNumber: String, password: String) {
-        if (!Validator.validateUsername(phoneNumber)) {
-            throw ServiceException(MessageKey.LOGIN_PHONENUMBER_WRONG)
+    private fun validateUserPassword(username: String, password: String) {
+        if (!Validator.validateUsername(username)) {
+            throw ServiceException(MessageKey.LOGIN_USERNAME_WRONG)
         }
         if (!Validator.validatorPassword(password)) {
             throw ServiceException(MessageKey.LOGIN_PASSWORD_WRONG)

@@ -1,4 +1,4 @@
-package com.elomath.pro.util
+package com.hust.project3.gamequestionsanswer.util
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken

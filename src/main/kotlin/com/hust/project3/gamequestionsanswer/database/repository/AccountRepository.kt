@@ -10,8 +10,8 @@ import java.util.*
 @Repository
 interface AccountRepository : PagingAndSortingRepository<Account, UUID> {
 
-    fun findByPhoneNumber(phoneNumber: String): Account
+    fun findByUsername(username: String): Account
 
-    fun existsAccountByPhoneNumber(phoneNumber: String): Boolean
+    fun existsAccountByUsername(username: String): Boolean
 
 }

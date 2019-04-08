@@ -3,52 +3,52 @@ package com.hust.project3.gamequestionsanswer.util
 import com.hust.project3.gamequestionsanswer.constant.PointConstants
 import com.hust.project3.gamequestionsanswer.constant.MatchConstant
 
-object EloCalculatorUtil {
-    fun scoreElo(preEloPlayerOne: Int, preEloPlayerTwo: Int, resultOfPlayerOne: String): MutableList<Int> {
-        val qa = Math.pow(10.0, (preEloPlayerOne.toDouble() / 400.0))
-        val qb = Math.pow(10.0, (preEloPlayerTwo.toDouble() / 400.0))
+object PointCalculatorUtil {
+    fun calculate(prePointPlayerOne: Int, prePointPlayerTwo: Int, resultOfPlayerOne: String): MutableList<Int> {
+        val qa = Math.pow(10.0, (prePointPlayerOne.toDouble() / 400.0))
+        val qb = Math.pow(10.0, (prePointPlayerTwo.toDouble() / 400.0))
         val sumQaQb = qa + qb
-        val eloEquationPlayerOne = qa / sumQaQb
-        val eloEquationPlayerTwo = qb / sumQaQb
-        val constantKPlayerOne = getConstantKByElo(preEloPlayerOne).toDouble()
-        val constantKPlayerTwo = getConstantKByElo(preEloPlayerTwo).toDouble()
-        val listResultElo = mutableListOf<Int>()
+        val pointEquationPlayerOne = qa / sumQaQb
+        val pointEquationPlayerTwo = qb / sumQaQb
+        val constantKPlayerOne = getConstantKByPoint(prePointPlayerOne).toDouble()
+        val constantKPlayerTwo = getConstantKByPoint(prePointPlayerTwo).toDouble()
+        val listResultPoint = mutableListOf<Int>()
         when (resultOfPlayerOne) {
             MatchConstant.PLAYER_WIN -> {
-                val latestEloPlayerOne = (preEloPlayerOne.toDouble() + constantKPlayerOne * (1.0 - eloEquationPlayerOne)).toInt()
-                val latestEloPlayerTwo = (preEloPlayerTwo.toDouble() + constantKPlayerTwo * (0.0 - eloEquationPlayerTwo)).toInt()
-                listResultElo.add(latestEloPlayerOne)
-                listResultElo.add(latestEloPlayerTwo)
+                val latestPointPlayerOne = (prePointPlayerOne.toDouble() + constantKPlayerOne * (1.0 - pointEquationPlayerOne)).toInt()
+                val latestPointPlayerTwo = (prePointPlayerTwo.toDouble() + constantKPlayerTwo * (0.0 - pointEquationPlayerTwo)).toInt()
+                listResultPoint.add(latestPointPlayerOne)
+                listResultPoint.add(latestPointPlayerTwo)
             }
             MatchConstant.PLAYER_DRAW -> {
-                val latestEloPlayerOne = (preEloPlayerOne.toDouble() + constantKPlayerOne * (0.5 - eloEquationPlayerOne)).toInt()
-                val latestEloPlayerTwo = (preEloPlayerTwo.toDouble() + constantKPlayerTwo * (0.5 - eloEquationPlayerTwo)).toInt()
-                listResultElo.add(latestEloPlayerOne)
-                listResultElo.add(latestEloPlayerTwo)
+                val latestPointPlayerOne = (prePointPlayerOne.toDouble() + constantKPlayerOne * (0.5 - pointEquationPlayerOne)).toInt()
+                val latestPointPlayerTwo = (prePointPlayerTwo.toDouble() + constantKPlayerTwo * (0.5 - pointEquationPlayerTwo)).toInt()
+                listResultPoint.add(latestPointPlayerOne)
+                listResultPoint.add(latestPointPlayerTwo)
             }
             MatchConstant.PLAYER_LOSE -> {
-                val latestEloPlayerOne = (preEloPlayerOne.toDouble() + constantKPlayerOne * (0.0 - eloEquationPlayerOne)).toInt()
-                val latestEloPlayerTwo = (preEloPlayerTwo.toDouble() + constantKPlayerTwo * (1.0 - eloEquationPlayerTwo)).toInt()
-                listResultElo.add(latestEloPlayerOne)
-                listResultElo.add(latestEloPlayerTwo)
+                val latestPointPlayerOne = (prePointPlayerOne.toDouble() + constantKPlayerOne * (0.0 - pointEquationPlayerOne)).toInt()
+                val latestPointPlayerTwo = (prePointPlayerTwo.toDouble() + constantKPlayerTwo * (1.0 - pointEquationPlayerTwo)).toInt()
+                listResultPoint.add(latestPointPlayerOne)
+                listResultPoint.add(latestPointPlayerTwo)
             }
         }
-        return listResultElo
+        return listResultPoint
     }
 
-    private fun getConstantKByElo(eloOfPlayer: Int): Int {
+    private fun getConstantKByPoint(pointOfPlayer: Int): Int {
         var constantsK = 0
         when {
-            eloOfPlayer < 1600 -> {
+            pointOfPlayer < 1600 -> {
                 constantsK = PointConstants.CONSTANTS_K_OF_PLAYER_BELOW_1600_POINT
             }
-            eloOfPlayer < 2000 -> {
+            pointOfPlayer < 2000 -> {
                 constantsK = PointConstants.CONSTANTS_K_OF_PLAYER_BELOW_2000_POINT
             }
-            eloOfPlayer < 2400 -> {
+            pointOfPlayer < 2400 -> {
                 constantsK = PointConstants.CONSTANTS_K_OF_PLAYER_BELOW_2400_POINT
             }
-            eloOfPlayer >= 2400 -> {
+            pointOfPlayer >= 2400 -> {
                 constantsK = PointConstants.CONSTANTS_K_OF_PLAYER_ABOVE_2400_POINT
             }
         }

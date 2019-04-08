@@ -1,6 +1,6 @@
 package com.hust.project3.gamequestionsanswer.controller
 
-import com.hust.project3.gamequestionsanswer.constant.EloConstants
+import com.hust.project3.gamequestionsanswer.constant.PointConstants
 import com.hust.project3.gamequestionsanswer.constant.Key
 import com.hust.project3.gamequestionsanswer.log.LogFactory
 import com.hust.project3.gamequestionsanswer.service.GamePlayService
@@ -23,7 +23,7 @@ class GamePlayController {
             if (!gamePlayService.checkRoomAvailable()) {
                 gamePlayService.createNewRoom(accountId)
             } else {
-                gamePlayService.matchPlayerByElo(accountId, EloConstants.RANGE_ELO_MATCH)
+                gamePlayService.matchPlayerByPoint(accountId, PointConstants.RANGE_POINT_MATCH)
             }
         }
     }
@@ -42,12 +42,5 @@ class GamePlayController {
         LogFactory.logger.info("GamePlayController ready Account Id: $accountId")
         gamePlayService.readyPlay(accountId, gameRoomId)
     }
-
-//    @MessageMapping("/invite-player")
-//    @Throws(Exception::class)
-//    fun invitePlayer(@Header(value = Key.HEADER_ACCOUNT_ID) accountIdPlayerSendInvite: String,
-//                     @Header(value = Key.HEADER_PHONE_NUMBER) phoneNumber: String) {
-//        gamePlayService.invitePlayerByPhoneNumber(accountIdPlayerSendInvite, phoneNumber)
-//    }
 
 }

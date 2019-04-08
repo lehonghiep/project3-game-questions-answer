@@ -4,4 +4,4 @@ import java.util.*
 
 class ResultPlayerDto(var accountId: UUID,
                       var score:Int,
-                      var latestElo:Int?)
+                      var latestPoint:Int?)

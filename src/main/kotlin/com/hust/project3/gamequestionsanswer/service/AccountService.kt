@@ -13,7 +13,7 @@ interface AccountService {
 
     fun findById(id: UUID): Account?
 
-    fun findByPhoneNumber(phoneNumber: String): Account?
+    fun findByUsername(username: String): Account?
 
     fun online(accountOnlineDto: AccountOnlineDto): ResponseDto<*>
 

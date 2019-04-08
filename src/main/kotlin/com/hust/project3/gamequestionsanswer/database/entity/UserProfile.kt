@@ -14,8 +14,8 @@ class UserProfile : BaseEntity() {
     @Column(name = "date_of_birth")
     var dateOfBirth: Date? = null
 
-    @Column(name = "elo")
-    var elo: Int? = null
+    @Column(name = "point")
+    var point: Int? = null
 
     @Column(name = "avatar")
     var avatar: String? = null
